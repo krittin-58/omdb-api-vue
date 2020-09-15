@@ -1,6 +1,7 @@
 <template>
     <div>
-      <input type="text" v-model="movieId" v-on:keyup.enter="getMovie(movieId)">
+      <input type="text" v-model="movieId" v-on:keyup.enter="getMovie(movieId)"
+        placeholder="tt0289043">
       <p>{{ movieResponse }}</p>
     </div>
 </template>
@@ -19,7 +20,7 @@ export default {
   },
 
   mounted() {
-    this.getMovie();
+    this.getMovie('tt0289043'); // default movie ID
   },
 
   methods: {
@@ -29,7 +30,8 @@ export default {
         const response = await fetch(url);
         this.movieResponse = await response.json();
       } catch (error) {
-        console.log(error);
+        // eslint-disable-next-line no-alert
+        this.movieResponse = error;
       }
     },
   },
