@@ -1,8 +1,8 @@
 <template>
     <div class="container">
       <input type="text" v-model="movieId" v-on:keyup.enter="getMovie(movieId)"
-        placeholder="Typing movie id">
-        <movie-details :movieResponse="movieResponse"></movie-details>
+        placeholder="Typing movie id"><br><br>
+        <movie-details :movieResponse="movieResponse"></movie-details><br>
     </div>
 </template>
 

@@ -1,25 +1,41 @@
 <template>
-  <div class="container">
-  <p>{{ movieResponse.title }}</p>
-
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img :src="movieResponse.poster">
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <p class="title is-4">{{ movieResponse.title }}</p>
+    <div>
+      <div class="columns">
+        <div class="column is-one-third">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img :src="movieResponse.poster" alt="Placeholder image">
+              </figure>
+            </div>
+            <!-- <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">{{ movieResponse.title }}</p>
+                  <p class="subtitle is-6">{{ movieResponse.plot }}</p>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
-        <div class="content">
-          <p>{{ movieResponse.plot }}</p>
+
+        <div class="column">
+          <div class="box">
+            <article class="media">
+              <div class="media-content">
+                <div class="content has-text-left">
+                  <p class="title is-2">
+                    {{ movieResponse.title }} ({{ movieResponse.year }})
+
+                  </p>
+                  <p class="subtitle is-3"></p>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
