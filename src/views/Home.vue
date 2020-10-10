@@ -2,7 +2,10 @@
     <div class="container">
       <input type="text" v-model="movieId" v-on:keyup.enter="getMovie(movieId)"
         placeholder="Typing movie id"><br><br>
-        <movie-details :movieResponse="movieResponse"></movie-details><br>
+        <movie-details
+          :movieResponse="movieResponse"
+          :movieSimilar="movieSimilar">
+        </movie-details><br>
     </div>
 </template>
 
@@ -46,6 +49,7 @@ export default {
         imdbVoted: '',
       },
       movieId: 'joker',
+      movieSimilar: {},
     };
   },
 
@@ -89,6 +93,19 @@ export default {
       } catch (error) {
         // eslint-disable-next-line no-alert
         this.movieResponse = error;
+      }
+
+      this.getMovieSimilar(this.movieResponse.title);
+    },
+
+    async getMovieSimilar(movieName) {
+      try {
+        const url = `${config.API_URL}/?apikey=${config.API_KEY}&s=${movieName}`;
+        const response = await fetch(url);
+        const movieSimilarRes = await response.json();
+        this.movieSimilar = movieSimilarRes.Search;
+      } catch (error) {
+        this.movieSimilar = error;
       }
     },
   },

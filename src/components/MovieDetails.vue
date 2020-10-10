@@ -8,14 +8,6 @@
                 <img :src="movieResponse.poster" alt="Placeholder image">
               </figure>
             </div>
-            <!-- <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">{{ movieResponse.title }}</p>
-                  <p class="subtitle is-6">{{ movieResponse.plot }}</p>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
 
@@ -47,15 +39,22 @@
               </div>
             </article>
           </div>
+          <!-- for similar -->
+          <movie-similar :movieSimilar="movieSimilar"></movie-similar>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import MovieSimilar from './MovieSimilar.vue';
 
 export default {
   name: 'movieDetails',
-  props: ['movieResponse'],
+  components: {
+    MovieSimilar,
+  },
+
+  props: ['movieResponse', 'movieSimilar'],
 };
 </script>
