@@ -24,11 +24,25 @@
             <article class="media">
               <div class="media-content">
                 <div class="content has-text-left">
-                  <p class="title is-2">
+                  <h3 class="title is-2">
                     {{ movieResponse.title }} ({{ movieResponse.year }})
-
+                  </h3>
+                  <p class="subtitle is-5">
+                   <b>Director:</b> {{ movieResponse.director }} <br>
+                   <b>Plot:</b> {{ movieResponse.plot }} <br>
+                   <b>Writer:</b> {{ movieResponse.writer }} <br>
                   </p>
-                  <p class="subtitle is-3"></p>
+                  <hr>
+                  <p class="subtitle is-6">
+                   <b>Actors:</b> {{ movieResponse.actors }} <br>
+                   <b>Awards:</b> {{ movieResponse.awards }} <br>
+                   <b>Box Office:</b> {{ movieResponse.boxOffice }} <br>
+                   <b>Countries:</b> {{ movieResponse.country }} <br>
+                   <b>Genre:</b> {{ movieResponse.genre }} <br>
+                   <b>DVD:</b> {{ movieResponse.dvd }} <br>
+                   <b>Language:</b> {{ movieResponse.language }} <br>
+                   <b>Durations time:</b> {{ movieResponse.runtime }} <br>
+                  </p>
                 </div>
               </div>
             </article>

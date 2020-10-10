@@ -20,6 +20,8 @@ export default {
 </script>
 
 <style>
+@import "https://unicons.iconscout.com/release/v2.1.11/css/unicons.css";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
