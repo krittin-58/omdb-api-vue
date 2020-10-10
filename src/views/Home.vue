@@ -1,26 +1,56 @@
 <template>
-    <div>
+    <div class="container">
       <input type="text" v-model="movieId" v-on:keyup.enter="getMovie(movieId)"
-        placeholder="tt0289043">
-      <p>{{ movieResponse }}</p>
+        placeholder="Typing movie id">
+        <movie-details :movieResponse="movieResponse"></movie-details>
     </div>
 </template>
 
 <script>
 import config from '../services/api';
+import MovieDetails from '../components/MovieDetails.vue';
 
 export default {
   name: 'Home',
+  components: {
+    MovieDetails,
+  },
 
   data() {
     return {
-      movieResponse: null,
-      movieId: null,
+      movieResponse: {
+        title: '',
+        actors: '',
+        awards: '',
+        boxOffice: '',
+        country: '',
+        dvd: '',
+        director: '',
+        genre: '',
+        language: '',
+        metaScore: '',
+        plot: '',
+        poster: '',
+        production: '',
+        rated: '',
+        ratings: [],
+        releasedDate: '',
+        response: '',
+        runtime: '',
+        type: '',
+        website: '',
+        writer: '',
+        year: '',
+        imdbID: '',
+        imdbRating: '',
+        imdbVoted: '',
+      },
+      movieId: 'tt1326972',
     };
   },
 
   mounted() {
-    this.getMovie('tt0289043'); // default movie ID
+    this.getMovie('tt1326972'); // default movie ID
   },
 
   methods: {
@@ -28,7 +58,34 @@ export default {
       try {
         const url = `${config.API_URL}/?apikey=${config.API_KEY}&i=${id}`;
         const response = await fetch(url);
-        this.movieResponse = await response.json();
+        const moviesRes = await response.json();
+
+        this.movieResponse.title = moviesRes.Title;
+        this.movieResponse.actors = moviesRes.Actors;
+        this.movieResponse.awards = moviesRes.Awards;
+        this.movieResponse.poster = moviesRes.Poster;
+        this.movieResponse.boxOffice = moviesRes.BoxOffice;
+        this.movieResponse.country = moviesRes.Country;
+        this.movieResponse.dvd = moviesRes.DVD;
+        this.movieResponse.director = moviesRes.Director;
+        this.movieResponse.genre = moviesRes.Genre;
+        this.movieResponse.language = moviesRes.Language;
+        this.movieResponse.metaScore = moviesRes.MetaScore;
+        this.movieResponse.plot = moviesRes.Plot;
+        this.movieResponse.poster = moviesRes.Poster;
+        this.movieResponse.production = moviesRes.Production;
+        this.movieResponse.rated = moviesRes.Rated;
+        this.movieResponse.ratings = moviesRes.Ratings;
+        this.movieResponse.releasedDate = moviesRes.Released;
+        this.movieResponse.response = moviesRes.Response;
+        this.movieResponse.runtime = moviesRes.Runtime;
+        this.movieResponse.type = moviesRes.Type;
+        this.movieResponse.website = moviesRes.Website;
+        this.movieResponse.writer = moviesRes.Writer;
+        this.movieResponse.year = moviesRes.Year;
+        this.movieResponse.imdbID = moviesRes.imdbID;
+        this.movieResponse.imdbRating = moviesRes.imdbRating;
+        this.movieResponse.imdbVoted = moviesRes.imdbVoted;
       } catch (error) {
         // eslint-disable-next-line no-alert
         this.movieResponse = error;

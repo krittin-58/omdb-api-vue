@@ -5,8 +5,19 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <footer-component></footer-component>
   </div>
 </template>
+
+<script>
+import FooterComponent from './components/footer.vue';
+
+export default {
+  components: {
+    FooterComponent,
+  },
+};
+</script>
 
 <style>
 #app {
