@@ -45,18 +45,18 @@ export default {
         imdbRating: '',
         imdbVoted: '',
       },
-      movieId: 'tt1326972',
+      movieId: 'joker',
     };
   },
 
   mounted() {
-    this.getMovie('tt1326972'); // default movie ID
+    this.getMovie('joker'); // default movie ID
   },
 
   methods: {
-    async getMovie(id) {
+    async getMovie(keyword) {
       try {
-        const url = `${config.API_URL}/?apikey=${config.API_KEY}&i=${id}`;
+        const url = `${config.API_URL}/?apikey=${config.API_KEY}&t=${keyword}`;
         const response = await fetch(url);
         const moviesRes = await response.json();
 
