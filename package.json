@@ -11,6 +11,7 @@
     "@iconscout/unicons": "^3.0.3",
     "buefy": "^0.9.3",
     "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },
