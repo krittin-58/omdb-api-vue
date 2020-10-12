@@ -1,4 +1,4 @@
-# imdb-api-vue
+# tmdb-api-vue
 
 ## Project setup
 ```
