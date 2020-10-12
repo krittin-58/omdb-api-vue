@@ -1,4 +1,4 @@
-# tmdb-api-vue
+# tmdb-api-vue [![Netlify Status](https://api.netlify.com/api/v1/badges/b3e79b0b-dcfa-4435-b570-b6fbd4e161ff/deploy-status)](https://app.netlify.com/sites/dreamy-mayer-a0a448/deploys)
 
 ## Project setup
 ```
