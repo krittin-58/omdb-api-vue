@@ -11,6 +11,7 @@
           v-on:keyup.enter="getMovie(movieId)"
           @focus="searchFocused = true"
           @blur="searchFocused = false"
+          aria-label="Search for a movie"
           placeholder="Search for a movie..."
           class="search-input"
         >
