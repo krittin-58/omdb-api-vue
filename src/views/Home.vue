@@ -19,7 +19,9 @@
     </div>
 
     <div class="content-section">
+      <movie-skeleton v-if="isLoading"></movie-skeleton>
       <movie-details
+        v-else
         :movieResponse="movieResponse"
         :movieSimilar="movieSimilar"
       ></movie-details>
@@ -30,15 +32,18 @@
 <script>
 import config from '../services/api';
 import MovieDetails from '../components/MovieDetails.vue';
+import MovieSkeleton from '../components/MovieSkeleton.vue';
 
 export default {
   name: 'Home',
   components: {
     MovieDetails,
+    MovieSkeleton,
   },
 
   data() {
     return {
+      isLoading: false,
       searchFocused: false,
       movieResponse: {
         title: '',
@@ -80,6 +85,8 @@ export default {
     async getMovie(keyword) {
       if (!keyword || !keyword.trim()) return;
 
+      this.isLoading = true;
+
       try {
         const response = await config.getMovies(keyword);
 
@@ -113,6 +120,8 @@ export default {
       } catch (error) {
         this.movieResponse.title = '';
         this.movieSimilar = [];
+      } finally {
+        this.isLoading = false;
       }
     },
 
