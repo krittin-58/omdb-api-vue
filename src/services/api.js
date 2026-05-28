@@ -1,8 +1,13 @@
 const API_OMDB_URL = 'https://www.omdbapi.com';
 const API_OMDB_KEY = process.env.VUE_APP_OMDB_KEY || 'efcee23b';
 
+function buildUrl(params) {
+  const query = new URLSearchParams({ apikey: API_OMDB_KEY, ...params });
+  return `${API_OMDB_URL}/?${query}`;
+}
+
 async function getMovies(keyword) {
-  const response = await fetch(`${API_OMDB_URL}/?apikey=${API_OMDB_KEY}&t=${encodeURIComponent(keyword)}`);
+  const response = await fetch(buildUrl({ t: keyword }));
   if (!response.ok) {
     throw new Error(`Network error: ${response.status}`);
   }
@@ -14,7 +19,7 @@ async function getMovies(keyword) {
 }
 
 async function getMovieSimilar(movieName) {
-  const response = await fetch(`${API_OMDB_URL}/?apikey=${API_OMDB_KEY}&s=${encodeURIComponent(movieName)}`);
+  const response = await fetch(buildUrl({ s: movieName }));
   if (!response.ok) {
     throw new Error(`Network error: ${response.status}`);
   }
