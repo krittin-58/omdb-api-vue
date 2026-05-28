@@ -126,7 +126,16 @@ export default {
   components: {
     MovieSimilar,
   },
-  props: ['movieResponse', 'movieSimilar'],
+  props: {
+    movieResponse: {
+      type: Object,
+      required: true,
+    },
+    movieSimilar: {
+      type: Array,
+      default: () => [],
+    },
+  },
 };
 </script>
 
@@ -205,7 +214,6 @@ export default {
 
 .movie-meta {
   font-size: 14px;
-  color: #7070909a;
   color: #6b6b8a;
   display: flex;
   align-items: center;

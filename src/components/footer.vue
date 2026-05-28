@@ -8,6 +8,12 @@
   </footer>
 </template>
 
+<script>
+export default {
+  name: 'AppFooter',
+};
+</script>
+
 <style scoped>
 .app-footer {
   background: #080810;
