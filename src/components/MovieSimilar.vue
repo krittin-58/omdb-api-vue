@@ -28,7 +28,12 @@
 <script>
 export default {
   name: 'similarMovie',
-  props: ['movieSimilar'],
+  props: {
+    movieSimilar: {
+      type: Array,
+      required: true,
+    },
+  },
 };
 </script>
 

@@ -68,7 +68,7 @@ export default {
         imdbVoted: '',
       },
       movieId: '',
-      movieSimilar: {},
+      movieSimilar: [],
     };
   },
 
@@ -78,48 +78,49 @@ export default {
 
   methods: {
     async getMovie(keyword) {
+      if (!keyword || !keyword.trim()) return;
+
       try {
         const response = await config.getMovies(keyword);
-        const moviesRes = response;
 
-        this.movieResponse.title = moviesRes.Title;
-        this.movieResponse.actors = moviesRes.Actors;
-        this.movieResponse.awards = moviesRes.Awards;
-        this.movieResponse.poster = moviesRes.Poster;
-        this.movieResponse.boxOffice = moviesRes.BoxOffice;
-        this.movieResponse.country = moviesRes.Country;
-        this.movieResponse.dvd = moviesRes.DVD;
-        this.movieResponse.director = moviesRes.Director;
-        this.movieResponse.genre = moviesRes.Genre;
-        this.movieResponse.language = moviesRes.Language;
-        this.movieResponse.metaScore = moviesRes.MetaScore;
-        this.movieResponse.plot = moviesRes.Plot;
-        this.movieResponse.production = moviesRes.Production;
-        this.movieResponse.rated = moviesRes.Rated;
-        this.movieResponse.ratings = moviesRes.Ratings;
-        this.movieResponse.releasedDate = moviesRes.Released;
-        this.movieResponse.response = moviesRes.Response;
-        this.movieResponse.runtime = moviesRes.Runtime;
-        this.movieResponse.type = moviesRes.Type;
-        this.movieResponse.website = moviesRes.Website;
-        this.movieResponse.writer = moviesRes.Writer;
-        this.movieResponse.year = moviesRes.Year;
-        this.movieResponse.imdbID = moviesRes.imdbID;
-        this.movieResponse.imdbRating = moviesRes.imdbRating;
-        this.movieResponse.imdbVoted = moviesRes.imdbVoted;
+        this.movieResponse.title = response.Title;
+        this.movieResponse.actors = response.Actors;
+        this.movieResponse.awards = response.Awards;
+        this.movieResponse.poster = response.Poster;
+        this.movieResponse.boxOffice = response.BoxOffice;
+        this.movieResponse.country = response.Country;
+        this.movieResponse.dvd = response.DVD;
+        this.movieResponse.director = response.Director;
+        this.movieResponse.genre = response.Genre;
+        this.movieResponse.language = response.Language;
+        this.movieResponse.metaScore = response.Metascore;
+        this.movieResponse.plot = response.Plot;
+        this.movieResponse.production = response.Production;
+        this.movieResponse.rated = response.Rated;
+        this.movieResponse.ratings = response.Ratings;
+        this.movieResponse.releasedDate = response.Released;
+        this.movieResponse.response = response.Response;
+        this.movieResponse.runtime = response.Runtime;
+        this.movieResponse.type = response.Type;
+        this.movieResponse.website = response.Website;
+        this.movieResponse.writer = response.Writer;
+        this.movieResponse.year = response.Year;
+        this.movieResponse.imdbID = response.imdbID;
+        this.movieResponse.imdbRating = response.imdbRating;
+        this.movieResponse.imdbVoted = response.imdbVotes;
+
+        await this.getMovieSimilar(this.movieResponse.title);
       } catch (error) {
-        this.movieResponse = error;
+        this.movieResponse.title = '';
+        this.movieSimilar = [];
       }
-
-      this.getMovieSimilar(this.movieResponse.title);
     },
 
     async getMovieSimilar(movieName) {
       try {
-        const response = await config.getMovieSimilar(movieName);
-        this.movieSimilar = response.Search;
+        this.movieSimilar = await config.getMovieSimilar(movieName);
       } catch (error) {
-        this.movieSimilar = error;
+        this.movieSimilar = [];
       }
     },
   },
